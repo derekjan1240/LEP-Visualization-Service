@@ -1,6 +1,7 @@
 import { NestFactory } from '@nestjs/core';
 import { Logger, ValidationPipe } from '@nestjs/common';
 import { AppModule } from './app.module';
+import { initSwagger } from './app.swagger';
 
 import { Transport, MicroserviceOptions } from '@nestjs/microservices';
 
@@ -27,6 +28,8 @@ async function bootstrap() {
       credentials: true,
     },
   });
+
+  initSwagger(app);
 
   app.useGlobalPipes(
     new ValidationPipe({
